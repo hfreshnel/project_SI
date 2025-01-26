@@ -15,69 +15,69 @@ def menu():
 
     while True:
         print("\n--- Main Menu ---")
-        print("a. Load message")
-        print("b. Choose hash function")
-        print("c. Print hashed message")
-        print("d. Generate and save keys")
-        print("e. Load keys")
-        print("f. Sign and encrypt message")
-        print("g. Sign but not encrypt message")
-        print("h. Decrypt and verify signature")
-        print("i. Verify signature")
-        print("j. Quit")
+        print("1. Load message")
+        print("2. Choose hash function")
+        print("3. Print hashed message")
+        print("4. Generate and save keys")
+        print("5. Load keys")
+        print("6. Sign and encrypt message")
+        print("7. Sign but not encrypt message")
+        print("8. Decrypt and verify signature")
+        print("9. Verify signature")
+        print("10. Quit")
 
         choice = input("Enter your choice: ").lower()
 
-        if choice == 'a':
+        if choice == '1':
             message = load_message()  
             print(f"Message loaded: {message}")
 
-        elif choice == 'b':
+        elif choice == '2':
             hash_function = selectHash() 
             if hash_function:
                 print(f"Hash function selected: {hash_function.name}")
             else:
                 print("No hash function selected.")
 
-        elif choice == 'c':
+        elif choice == '3':
             if message and hash_function:
                 print_hashed_message(message, hash_function) 
             else:
                 print("Please load a message and choose a hash function first.")
 
-        elif choice == 'd':
+        elif choice == '4':
             keys = generate_and_save_keys()  
             
 
-        elif choice == 'e':
+        elif choice == '5':
             keys = load_keys() 
             print(keys)
 
-        elif choice == 'f':
+        elif choice == '6':
             if message and keys:
                 message_sign_encrypt = sign_and_encrypt(message, keys[0],keys[1],hash_function) 
             else:
                 print("Please load a message and keys first.")
 
-        elif choice == 'g':
+        elif choice == '7':
             if message and keys:
                 signature = sign_message(message, keys[0],hash_function) 
             else:
                 print("Please load a message and keys first.")
 
-        elif choice == 'h':
+        elif choice == '8':
             if keys and message_sign_encrypt:
                 decrypt_and_verify(message_sign_encrypt[0],message_sign_encrypt[1],keys[0],keys[1],hash_function)  
             else:
                 print("Please load keys and encrypt first  ")
 
-        elif choice == 'i':
+        elif choice == '9':
             if keys:
                 verify_signature(message, signature, keys[1], hash_function) 
             else:
                 print("Please load keys first.")
 
-        elif choice == 'j':
+        elif choice == '10':
             print("Exiting program.")
             break
         else:
