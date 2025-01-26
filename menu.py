@@ -74,7 +74,7 @@ def menu():
 
         elif choice == '9':
             if keys:
-                verify_signature(message, signature, keys[1], hash_function) 
+                verify_signature(signature, keys[1], hash_function) 
             else:
                 print("Please load keys first.")
 
