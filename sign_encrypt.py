@@ -1,15 +1,9 @@
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives import hashes
+from sign_message import sign_message
 
 def sign_and_encrypt(message, private_key, public_key, hash_function):
-    signature = private_key.sign(
-        message.encode(),
-        padding.PSS(
-            mgf=padding.MGF1(hash_function),
-            salt_length=padding.PSS.MAX_LENGTH
-        ),
-        hash_function
-    )
+    signature = sign_message(message, private_key, hash_function)
 
     encrypted_message = public_key.encrypt(
         message.encode(),
