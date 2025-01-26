@@ -7,7 +7,6 @@ def selectHash():
         "3": ("SHA-256", hashes.SHA256),
         "4": ("SHA-512", hashes.SHA512),
         "5": ("SHA-3-256", hashes.SHA3_256),
-        "6": ("<- Back", None)  
     }
 
     print("Choose a hash function:")
@@ -17,10 +16,8 @@ def selectHash():
 
     choice = input("Enter choice: ")
 
-    if choice in menu and choice != "6":
-        return menu[choice][1]()  
-    elif choice == "6":
-        return None
+    if choice in menu:
+        return menu[choice][1]()
     else:
         print("Invalid choice. Please try again.")
         return selectHash()
