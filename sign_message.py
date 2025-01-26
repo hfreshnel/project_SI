@@ -13,5 +13,4 @@ def sign_message(message, private_key, hash_function):
         hash_function
     )
     signed_message = message.encode() + signed_hash
-    print("Message signed.")
     return signed_message

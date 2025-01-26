@@ -1,4 +1,5 @@
 import os
+import secrets
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives import serialization
 
@@ -19,6 +20,10 @@ def generate_and_save_keys():
         format=serialization.PublicFormat.SubjectPublicKeyInfo
     )
 
+    # Generate symmetric key
+    symmetric_key = secrets.token_bytes(32)  # 256-bit key for AES
+    print(f"Generated symmetric key: {symmetric_key.hex()}")
+
     
     keys_folder = "keys"
     os.makedirs(keys_folder, exist_ok=True)
@@ -30,5 +35,8 @@ def generate_and_save_keys():
     
     with open(os.path.join(keys_folder, "public_key.pem"), "wb") as public_file:
         public_file.write(public_pem)
+
+    with open(os.path.join(keys_folder, "symmetric_key.pem"), "wb") as symmetric_file:
+        symmetric_file.write(symmetric_key)
 
     print("Keys generated and saved to the 'keys' folder.")

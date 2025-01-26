@@ -11,8 +11,11 @@ def load_keys():
         with open("keys/public_key.pem", "rb") as public_file:
             public_key = serialization.load_pem_public_key(public_file.read().strip())
 
+        with open("keys/symmetric_key.pem", "rb") as symmetric_file:
+            symmetric_key = symmetric_file.read().strip()
+
         print("Keys successfully loaded.")
-        return private_key, public_key
+        return private_key, public_key, symmetric_key
     except FileNotFoundError:
         print("Key files not found. Please generate or save keys first.")
         return None, None

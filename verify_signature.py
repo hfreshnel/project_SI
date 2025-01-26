@@ -25,8 +25,6 @@ def verify_signature(signed_message, public_key, hash_function):
             ),
             hash_function
         )
-        print("Signature is valid.")
         return True
     except InvalidSignature:
-        print("Signature is invalid.")
         return False
