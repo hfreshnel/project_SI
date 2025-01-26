@@ -1,6 +1,6 @@
 from load_message import load_message
 from selectHash import selectHash
-from print_hashed_message import print_hashed_message
+from hash_message import hash_message
 from generate_and_save_keys import generate_and_save_keys
 from load_keys import load_keys
 from sign_encrypt import sign_and_encrypt
@@ -41,7 +41,8 @@ def menu():
 
         elif choice == '3':
             if message and hash_function:
-                print_hashed_message(message, hash_function) 
+                hashed_message = hash_message(message, hash_function) 
+                print(f"Hashed message: {hashed_message.hex()}")
             else:
                 print("Please load a message and choose a hash function first.")
 
