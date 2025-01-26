@@ -3,10 +3,10 @@ from cryptography.hazmat.primitives import hashes
 from sign_message import sign_message
 
 def sign_and_encrypt(message, private_key, public_key, hash_function):
-    signature = sign_message(message, private_key, hash_function)
+    signed_message = sign_message(message, private_key, hash_function)
 
     encrypted_message = public_key.encrypt(
-        message.encode(),
+        signed_message,
         padding.OAEP(
             mgf=padding.MGF1(algorithm=hash_function),
             algorithm=hash_function,
@@ -15,4 +15,4 @@ def sign_and_encrypt(message, private_key, public_key, hash_function):
     )
 
     print("Message signed and encrypted.")
-    return encrypted_message, signature
+    return encrypted_message
